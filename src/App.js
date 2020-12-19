@@ -1,10 +1,13 @@
 import React from 'react';
-// importalmos browseRouter para crear las rutas que tendra nuestro proyecto
+// Importalmos browseRouter para crear las rutas que tendra nuestro proyecto
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+// Importamos componentes
 import Login from './components/auth/Login';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Proyectos from './components/proyectos/Proyectos';
 
+// Importando el contex para dejar disponible todo nuestro documento de state
 import ProyectoState from './context/proyectos/proyectoState';
 
 

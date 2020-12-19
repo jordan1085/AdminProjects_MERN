@@ -1,7 +1,9 @@
 import React, { useReducer } from 'react';
-import proyectoContext from './proyectoContext';
-import proyectoReducer from './proyectoReducer';
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types';
+import proyectoContext from './proyectoContext'; // Importamos el cotext para utilizar el provider
+import proyectoReducer from './proyectoReducer'; // Importamos el state del reducer
+
+// Importamos los types que definen una funcion
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS,AGREGAR_PROYECTO } from '../../types';
 
 
 
@@ -16,16 +18,15 @@ const ProyectoState = props => {
     
     // state inicial
     const initialState = {
-
         proyectos : [],
-        formulario : false
+        formulario : false // crear funcionalidad que oculte el formulario del aside
     }
 
-    // Dispath para ejecutar las acciones (types)
-    const [state, dispatch] = useReducer(proyectoReducer, initialState);
+    // Usamos array destructuring para extaer el stade(useSelector en redux) y el dispatch (para ejecutar las funciones en el reducer que cambiaran el stade)
+    const [state, dispatch] = useReducer(proyectoReducer, initialState); // Reducer y stade inicial
 
 
-    // Series de funciones para el CRUD
+    // Dispara la ejecucion del case(FORMULARIO_PROYECTO) en el switch del Reducer
     const mostrarFormulario = () => {
         dispatch({
             type: FORMULARIO_PROYECTO
@@ -41,7 +42,8 @@ const ProyectoState = props => {
     }
     
     return (
-        // Creamos provider y exportamos a app
+        // CONTEXT.provider
+        // Hay que consumirlo en el componente padre
         <proyectoContext.Provider
             value={{
                 //State
@@ -54,9 +56,7 @@ const ProyectoState = props => {
                 
 
             }}
-
         >
-             
             {props.children}
         </proyectoContext.Provider>
     )

@@ -13,15 +13,13 @@ const ListadoProyectos = () => {
     // Obtener proyectos cuando carga el componente
     useEffect(() => {
         obtenerProyectos();
-
     }, [])
 
-    // Revisar si proyectos tiene contenidos 
+    // Revisar si proyectos tiene contenido
     if(proyectos.length === 0) return null;
 
 
-
-    return ( 
+    return (
         <ul className="listado-proyectos">
             
             {proyectos.map(proyecto => (

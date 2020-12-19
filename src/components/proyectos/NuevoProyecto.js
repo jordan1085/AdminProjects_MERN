@@ -4,8 +4,11 @@ import proyectoContext from '../../context/proyectos/proyectoContext';
 // Creacion de componente con hooks
 const NuevoProyecto = () => {
 
-    // Obtener el estade del formulario
+
+    // obtener el state a traves del context
     const proyectosCotext = useContext(proyectoContext); 
+
+    // Importamos el formulario que pasamos en provider
     const { formulario, mostrarFormulario } = proyectosCotext;
 
     // HookState de proyecto
@@ -51,9 +54,7 @@ const NuevoProyecto = () => {
 
             >Nuevo Proyecto</button>
 
-            {
-                formulario
-                ?
+            { formulario ?
                 (
                     <form
                         className="formulario-nuevo-proyecto"
