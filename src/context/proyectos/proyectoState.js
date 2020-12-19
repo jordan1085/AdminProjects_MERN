@@ -1,9 +1,10 @@
 import React, { useReducer } from 'react';
+import uuid from 'uuid/dist/v4';
 import proyectoContext from './proyectoContext'; // Importamos el cotext para utilizar el provider
 import proyectoReducer from './proyectoReducer'; // Importamos el state del reducer
 
 // Importamos los types que definen una funcion
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS,AGREGAR_PROYECTO } from '../../types';
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO } from '../../types';
 
 
 
@@ -31,7 +32,7 @@ const ProyectoState = props => {
         dispatch({
             type: FORMULARIO_PROYECTO
         })
-    }
+};
 
     // Obtener los proyectos 
     const obtenerProyectos = () => {
@@ -39,8 +40,20 @@ const ProyectoState = props => {
             type: OBTENER_PROYECTOS,
             payload: proyectos
         })
-    }
+    };
     
+    // Agregar nuevo proyecto
+    const agregarProyecto = proyecto => {
+        proyecto.id = uuid();
+
+        // Insertar proyecto en el stade
+        dispatch({
+            type: AGREGAR_PROYECTO,
+            payload: proyecto
+        })
+        
+    }
+
     return (
         // CONTEXT.provider
         // Hay que consumirlo en el componente padre
@@ -52,10 +65,10 @@ const ProyectoState = props => {
 
                 // Funciones 
                 mostrarFormulario,
-                obtenerProyectos
-                
+                obtenerProyectos,
+                agregarProyecto
 
-            }}
+            }}  
         >
             {props.children}
         </proyectoContext.Provider>

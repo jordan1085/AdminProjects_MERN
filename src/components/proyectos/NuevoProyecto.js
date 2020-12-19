@@ -9,7 +9,7 @@ const NuevoProyecto = () => {
     const proyectosCotext = useContext(proyectoContext); 
 
     // Importamos el formulario que pasamos en provider
-    const { formulario, mostrarFormulario } = proyectosCotext;
+    const { formulario, mostrarFormulario, agregarProyecto } = proyectosCotext;
 
     // HookState de proyecto
     const [proyecto, guardarProyecto] = useState({
@@ -31,10 +31,17 @@ const NuevoProyecto = () => {
         e.preventDefault();
 
         // Validar proyecto
+        if(nombre === '') {
+            return;
+        }
 
         // Agregarlo al state
+        agregarProyecto(proyecto);
 
         // Reiniciar el form 
+        guardarProyecto({
+            nombre: ''
+        });
     } 
 
     // Mostrar fomulario
