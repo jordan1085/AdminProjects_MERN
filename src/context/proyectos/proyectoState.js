@@ -4,7 +4,7 @@ import proyectoContext from './proyectoContext'; // Importamos el cotext para ut
 import proyectoReducer from './proyectoReducer'; // Importamos el state del reducer
 
 // Importamos los types que definen una funcion
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO, VALIDAR_FORMULARIO } from '../../types';
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO, VALIDAR_FORMULARIO, PROYECTO_ACTUAL } from '../../types';
 
 
 
@@ -21,7 +21,8 @@ const ProyectoState = props => {
     const initialState = {
         proyectos : [],
         formulario : false, // crear funcionalidad que oculte el formulario del aside
-        errorFormulario : false 
+        errorFormulario : false,
+        proyecto: null 
     }
 
     // Usamos array destructuring para extaer el stade(useSelector en redux) y el dispatch (para ejecutar las funciones en el reducer que cambiaran el stade)
@@ -60,6 +61,14 @@ const ProyectoState = props => {
         dispatch({
             type: VALIDAR_FORMULARIO
         })
+    };
+
+    // Selecciona el proyecto que el usario dio click
+    const proyectoActual = proyectoId => {
+        dispatch({
+            type: PROYECTO_ACTUAL,
+            payload: proyectoId
+        })
     }
 
     return (
@@ -71,12 +80,14 @@ const ProyectoState = props => {
                 proyectos: state.proyectos,
                 formulario: state.formulario,
                 errorFormulario: state.errorFormulario,
+                proyecto: state.proyecto,
 
                 // Funciones 
                 mostrarFormulario,
                 obtenerProyectos,
                 agregarProyecto,
-                mostrarError
+                mostrarError,
+                proyectoActual
 
             }}  
         >
