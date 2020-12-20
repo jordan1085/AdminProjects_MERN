@@ -1,7 +1,7 @@
 // Contiene las funciones que van a interactuar con el state
 // Reducer cambia el state
 
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO } from '../../types';
+import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO, VALIDAR_FORMULARIO } from '../../types';
 
 
 export default (state, action) => {
@@ -21,7 +21,13 @@ export default (state, action) => {
             return {
                 ...state,
                 proyectos: [...state.proyectos, action.payload],
-                formulario: false
+                formulario: false,
+                errorFormulario: false
+            }
+        case VALIDAR_FORMULARIO:
+            return {
+                ...state,
+                errorFormulario: true
             }
         default:
             return state;
