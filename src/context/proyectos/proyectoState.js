@@ -4,9 +4,14 @@ import proyectoContext from './proyectoContext'; // Importamos el cotext para ut
 import proyectoReducer from './proyectoReducer'; // Importamos el state del reducer
 
 // Importamos los types que definen una funcion
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS, AGREGAR_PROYECTO, VALIDAR_FORMULARIO, PROYECTO_ACTUAL } from '../../types';
-
-
+import { 
+    FORMULARIO_PROYECTO, 
+    OBTENER_PROYECTOS, 
+    AGREGAR_PROYECTO, 
+    VALIDAR_FORMULARIO, 
+    PROYECTO_ACTUAL,
+    ELIMINAR_PROYECTO
+} from '../../types';
 
 // State inicial de la administracion de proyectos
 const ProyectoState = props => {
@@ -69,6 +74,14 @@ const ProyectoState = props => {
             type: PROYECTO_ACTUAL,
             payload: proyectoId
         })
+    };
+
+    // Elimina un proyecto
+    const eliminarProyecto = proyectoId => {
+        dispatch({
+            type: ELIMINAR_PROYECTO,
+            payload: proyectoId
+        })
     }
 
     return (
@@ -87,7 +100,8 @@ const ProyectoState = props => {
                 obtenerProyectos,
                 agregarProyecto,
                 mostrarError,
-                proyectoActual
+                proyectoActual,
+                eliminarProyecto
 
             }}  
         >
